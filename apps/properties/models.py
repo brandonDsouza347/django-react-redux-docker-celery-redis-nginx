@@ -44,8 +44,8 @@ class Property(TimeStampedUUIDModel):
         on_delete=models.DO_NOTHING,
     )
     title = models.CharField(verbose_name=_("Property Title"), max_length=250)
-    slud = AutoSlugField(populate_from="title", unique=True, always_update=True)
-    refrence_code = models.CharField(
+    slug = AutoSlugField(populate_from="title", unique=True, always_update=True)
+    ref_code = models.CharField(
         verbose_name=_("Property Refrence Code"),
         max_length=255,
         unique=True,
@@ -105,7 +105,7 @@ class Property(TimeStampedUUIDModel):
         verbose_name=_("Main Photo"), default="/house_sample.jpg", null=True, blank=True
     )
     photo1 = models.ImageField(
-        verbose_name=_("Main Photo"),
+        verbose_name=_("Photo1"),
         default="/interior_sample.jpg",
         null=True,
         blank=True,
@@ -131,7 +131,7 @@ class Property(TimeStampedUUIDModel):
 
     def save(self, *args, **kwargs):
         self.title = str.title(self.title)
-        self.description = str.description(self.description)
+        self.description = str.capitalize(self.description)
         self.refrence_code = "".join(
             random.choices(string.ascii_uppercase + string.digits, k=10)
         )
