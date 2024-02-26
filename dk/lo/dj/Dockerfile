@@ -29,12 +29,12 @@ RUN pip3 install -r requirements.txt
 #COPY . .
 
 #entrypoint shell script 
-COPY /entrypoint.sh /entrypoint.sh
+COPY ./dk/lo/dj/entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r$//g' /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 #start script
-COPY /start.sh /start.sh
+COPY ./dk/lo/dj/start.sh /start.sh
 RUN sed -i 's/\r$//g' /start.sh
 RUN chmod +x /start.sh
 
