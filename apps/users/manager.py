@@ -1,8 +1,8 @@
 from typing import Any
+
 from django.contrib.auth.base_user import BaseUserManager
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-
 # gettext_lazy is a django translator model that is used to translate any of the strings if need be
 from django.utils.translation import gettext_lazy as _
 

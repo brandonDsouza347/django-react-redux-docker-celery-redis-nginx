@@ -1,9 +1,11 @@
-from django.shortcuts import render
 from django.contrib.auth import get_user_model
+from django.shortcuts import render
 from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
+
 from apps.profiles.models import Profile
+
 from .models import Rating
 
 # Create your views here.

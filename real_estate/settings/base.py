@@ -1,6 +1,9 @@
-import os
-import environ
 from pathlib import Path
+from datetime import timedelta
+import environ
+import logging
+import logging.config
+from django.utils.log import DEFAULT_LOGGING
 
 env = environ.Env(DEBUG=(bool, False))
 
@@ -137,7 +140,6 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
 }
-from datetime import timedelta
 
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": (
@@ -170,11 +172,6 @@ DJOSER = {
         "user_delete": "apps.users.serializers.UserDeleteSerializer",
     },
 }
-
-import logging
-import logging.config
-
-from django.utils.log import DEFAULT_LOGGING
 
 # creates the python logging instance
 logger = logging.getLogger(__name__)

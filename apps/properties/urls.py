@@ -1,13 +1,9 @@
 from django.urls import path
-from .views import (
-    ListAllPropertiesAPIView,
-    ListAgentsPropertiesAPIView,
-    create_property_api_view,
-    PropertyDetailView,
-    update_property_api_view,
-    delete_property_api_view,
-    PropertySearchAPIView,
-)
+
+from .views import (ListAgentsPropertiesAPIView, ListAllPropertiesAPIView,
+                    PropertyDetailView, PropertySearchAPIView,
+                    create_property_api_view, delete_property_api_view,
+                    update_property_api_view)
 
 urlpatterns = [
     path("all/", ListAllPropertiesAPIView.as_view(), name="all_properties"),
