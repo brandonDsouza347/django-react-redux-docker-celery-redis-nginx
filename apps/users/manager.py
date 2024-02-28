@@ -60,6 +60,9 @@ class CustomUserManager(BaseUserManager):
 
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(_("is superuser must be true for admin user"))
+        
+        if not password:
+            raise ValueError(_("Superuser must have a password"))
 
         if email:
             email = self.normalize_email(email)
