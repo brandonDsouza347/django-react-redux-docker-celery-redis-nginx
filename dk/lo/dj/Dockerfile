@@ -38,5 +38,15 @@ COPY ./dk/lo/dj/start.sh /start.sh
 RUN sed -i 's/\r$//g' /start.sh
 RUN chmod +x /start.sh
 
+#celery worker
+COPY ./dk/lo/dj/celery/worker/start.sh /start-celeryworker.sh
+RUN sed -i 's/\r$//g' /start-celeryworker.sh
+RUN chmod +x /start-celeryworker.sh
+
+#flower celery task manager
+COPY ./dk/lo/dj/celery/flower/start.sh /start-flower.sh
+RUN sed -i 's/\r$//g' /start-flower.sh
+RUN chmod +x /start-flower.sh
+
 ENTRYPOINT [ "/entrypoint.sh" ]
 

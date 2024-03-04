@@ -18,3 +18,10 @@ pytest-django
 pytest-factoryboy
 Faker
 pytest-cov
+redis
+celery==4.4.7
+flower==0.9.7
+django-celery-email
+argh
+pyYAML
+watchdog
