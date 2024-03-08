@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                     models.CharField(max_length=250, verbose_name="Property Title"),
                 ),
                 (
-                    "slud",
+                    "slug",
                     autoslug.fields.AutoSlugField(
                         always_update=True,
                         editable=False,
@@ -47,10 +47,10 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "refrence_code",
-                    models.CharField(
+                    "ref_code",
+                    models.UUIDField(
                         blank=True,
-                        max_length=255,
+                        default=uuid.uuid4,
                         unique=True,
                         verbose_name="Property Refrence Code",
                     ),
@@ -184,7 +184,7 @@ class Migration(migrations.Migration):
                         default="/interior_sample.jpg",
                         null=True,
                         upload_to="",
-                        verbose_name="Main Photo",
+                        verbose_name="Photo1",
                     ),
                 ),
                 (

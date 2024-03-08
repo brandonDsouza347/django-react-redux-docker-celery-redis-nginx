@@ -35,7 +35,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             "is_seller",
             "is_agent",
             "top_agent",
-            "ratings",
+            "rating",
             "num_reviews",
             "reviews",
         ]

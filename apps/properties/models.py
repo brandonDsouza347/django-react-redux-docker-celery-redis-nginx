@@ -1,5 +1,6 @@
 import random
 import string
+import uuid
 
 from autoslug import AutoSlugField
 from django.contrib.auth import get_user_model
@@ -47,12 +48,7 @@ class Property(TimeStampedUUIDModel):
     )
     title = models.CharField(verbose_name=_("Property Title"), max_length=250)
     slug = AutoSlugField(populate_from="title", unique=True, always_update=True)
-    ref_code = models.CharField(
-        verbose_name=_("Property Refrence Code"),
-        max_length=255,
-        unique=True,
-        blank=True,
-    )
+    ref_code = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     description = models.TextField(
         verbose_name=_("Description"), default="Default description...update me please"
     )

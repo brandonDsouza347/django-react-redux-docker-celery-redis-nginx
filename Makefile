@@ -14,6 +14,9 @@ up:
 down:
 	docker compose down
 
+prune:
+	docker system prune --all
+
 show-logs:
 	docker compose logs
 
