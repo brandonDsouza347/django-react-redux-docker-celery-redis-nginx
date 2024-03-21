@@ -1,32 +1,54 @@
 import React,{ useState } from 'react'
 import { Container,Nav,Navbar,NavDropdown } from 'react-bootstrap'
 import { GiHouse } from 'react-icons/gi';
+import {FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import { logout,reset } from "../features/auth/authSlice";
 
 const Header = () => {
-    const [expanded, setExpanded] = useState(false);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const {user} = useSelector((state=>state.auth))
+    const logoutHandler = ()=>{
+        dispatch(logout());
+        dispatch(reset());
+        navigate("/")
+    }
+    
   return (
     <header>
-        <Navbar expanded={expanded} fixed="top" bg="dark" variant="dark" expand="lg" className="bg-body-tertiary" CollapseOnSelect>
+        <Navbar fixed="top" bg="dark" variant="dark" expand="lg" className="bg-body-tertiary" collapseOnSelect>
         <Container>
             <LinkContainer to={"/"}>
             <Navbar.Brand><GiHouse className="nav-icon"/>Real Estate</Navbar.Brand>
             </LinkContainer>
-            <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")} aria-controls="basic-navbar-nav" />
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <Nav className="ml-auto">
                 <LinkContainer to={"/"}>
-                    <Nav.Link onClick={() => setExpanded(false)}>Home</Nav.Link>
+                    <Nav.Link>Home</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to={"/properties"}>
-                    <Nav.Link onClick={() => setExpanded(false)}>Properties</Nav.Link>
+                    <Nav.Link >Properties</Nav.Link>
                 </LinkContainer>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
-                        Another action
+                {user? (
+                <NavDropdown title={user.firstName? user.firstName:"Welcome"} id="username">
+                    <LinkContainer to={"/profile"}>
+                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                        <FaSignOutAlt/> Logout
                     </NavDropdown.Item>
                 </NavDropdown>
+                ):(
+                    <LinkContainer to={"/login"}>
+                        <Nav.Link>
+                            <FaSignInAlt/> Login
+                        </Nav.Link>
+                    </LinkContainer>
+                )}
             </Nav>
             </Navbar.Collapse>
         </Container>

@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import PropertiesPage from "./pages/PropertiesPage";
 import NotFound from './components/NotFound';
+import LoginPage from './pages/LoginPage'
 
 const App = ()=> {
   return (
@@ -17,6 +18,7 @@ const App = ()=> {
           <Routes>
             <Route path='/' Component={HomePage}/>
             <Route path='/properties' Component={PropertiesPage}/>
+            <Route path='/login' Component={LoginPage}/>
             <Route path='*' Component={NotFound}/>
           </Routes>
           <ToastContainer theme='dark'/>
